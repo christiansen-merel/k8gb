@@ -1432,7 +1432,7 @@ func arrangeVariablesAndAssert(t *testing.T, expected Config,
 
 func cleanup() {
 	for _, s := range []string{ReconcileRequeueSecondsKey, ClusterGeoTagKey, ExtClustersGeoTagsKey, EdgeDNSZoneKey, DNSZoneKey, EdgeDNSServersKey,
-		ExtDNSEnabledKey, InfobloxGridHostKey, InfobloxVersionKey, InfobloxPortKey, InfobloxUsernameKey,
+		EdgeDNSServerKey, ExtDNSEnabledKey, InfobloxGridHostKey, InfobloxVersionKey, InfobloxPortKey, InfobloxUsernameKey,
 		InfobloxPasswordKey, K8gbNamespaceKey, CoreDNSExposedKey, InfobloxHTTPRequestTimeoutKey,
 		InfobloxHTTPPoolConnectionsKey, LogLevelKey, LogFormatKey, LogNoColorKey, MetricsAddressKey, SplitBrainCheckKey} {
 		if os.Unsetenv(s) != nil {
@@ -1442,6 +1442,8 @@ func cleanup() {
 }
 
 func configureEnvVar(config Config) {
+	_ = os.Unsetenv(EdgeDNSServerKey)
+	_ = os.Unsetenv(EdgeDNSServerPortKey)
 	_ = os.Setenv(ReconcileRequeueSecondsKey, strconv.Itoa(config.ReconcileRequeueSeconds))
 	_ = os.Setenv(ClusterGeoTagKey, config.ClusterGeoTag)
 	_ = os.Setenv(ExtClustersGeoTagsKey, strings.Join(config.ExtClustersGeoTags, ","))
