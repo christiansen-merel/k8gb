@@ -1,6 +1,6 @@
 module github.com/k8gb-io/k8gb
 
-go 1.16
+go 1.17
 
 require (
 	github.com/AbsaOSS/env-binder v1.0.0
