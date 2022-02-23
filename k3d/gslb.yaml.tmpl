@@ -4,6 +4,9 @@ name: test-gslb$CLUSTER_INDEX
 image: docker.io/rancher/k3s:v1.21.2-k3s1
 agents: 1
 network: k3d-action-bridge-network
+kubeAPI:
+  hostIP: "127.0.0.1"
+  hostPort: "$PORT_API"
 ports:
   - port: $PORT_HTTP:80
     nodeFilters:

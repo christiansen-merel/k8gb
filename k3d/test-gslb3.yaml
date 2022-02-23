@@ -4,17 +4,20 @@ name: test-gslb3
 image: docker.io/rancher/k3s:v1.21.2-k3s1
 agents: 1
 network: k3d-action-bridge-network
+kubeAPI:
+  hostIP: "127.0.0.1"
+  hostPort: "6446"
 ports:
-  - port: 82:80
+  - port: 83:80
     nodeFilters:
       - agent:0:direct
-  - port: 445:443
+  - port: 446:443
     nodeFilters:
       - agent:0:direct
-  - port: 9082:30090
+  - port: 9083:30090
     nodeFilters:
       - agent:0:direct
-  - port: 5055:53/udp
+  - port: 5056:53/udp
     nodeFilters:
       - agent:0:direct
 options:

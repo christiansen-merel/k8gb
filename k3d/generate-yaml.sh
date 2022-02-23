@@ -10,10 +10,11 @@ DIR="${DIR:-$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )}"
 
 echo Generating configs for $UPTO clusters..
 for c in $(seq $UPTO); do
-    export CLUSTER_INDEX=$(( 1 + $c ))
+    export CLUSTER_INDEX=$(( $c ))
     export PORT_HTTP=$(( 80 + $c ))
     export PORT_HTTPS=$(( 443 + $c ))
     export PORT_PROM=$(( 9080 + $c ))
     export PORT_DNS=$(( 5053 + $c ))
+    export PORT_API=$(( 6443 + $c ))
     cat ${DIR}/gslb.yaml.tmpl | envsubst > ${DIR}/test-gslb${CLUSTER_INDEX}.yaml
 done
